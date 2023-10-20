@@ -14,7 +14,7 @@ Após ter subir o docker (ver abaixo) e subir o servidor GRPC (ver abaixo), voc�
 - Executar o comando `service ProductService` 
 - Executar o comando `call $endpoint` 
 
-Existem 3 $endpoints:
+Existem 2 $endpoints:
 - CreateProduct
 - FindProducts (lista todos os productos cadastrados na base)
 
@@ -34,6 +34,4 @@ Utilizei Docker, conforme ensinado nas aulas.
 ### Serviços utilizados ao executar o docker-compose
 
 - Aplicação principal (GRPC)
-- Postgres
-- PgAdmin
 
