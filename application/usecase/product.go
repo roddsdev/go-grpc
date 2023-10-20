@@ -22,7 +22,7 @@ func (p *ProductUseCase) Register(name string, description string, price float32
 	return newProduct, nil
 }
 
-func (p *ProductUseCase) FindByKey(key string) (*model.Product, error) {
+func (p *ProductUseCase) FindByKey(key int32) (*model.Product, error) {
 	product, err := p.ProductRepository.FindProduct(key)
 	if err != nil {
 		return nil, err

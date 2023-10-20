@@ -53,23 +53,23 @@ func (p *ProductGrpcService) FindProducts(ctx context.Context, in *pb.FindProduc
 	}, nil
 }
 
-func (p *ProductGrpcService) FindProduct(ctx context.Context, in *pb.FindProductRequest) (*pb.FindProductResponse, error) {
-	product, err := p.ProductUseCase.FindByKey(in.Id)
-	if err != nil {
-		return &pb.FindProductResponse{
-			Product: &pb.Product{},
-		}, err
-	}
+// func (p *ProductGrpcService) FindProduct(ctx context.Context, in *pb.FindProductRequest) (*pb.FindProductResponse, error) {
+// 	product, err := p.ProductUseCase.FindByKey(in.Id)
+// 	if err != nil {
+// 		return &pb.FindProductResponse{
+// 			Product: &pb.Product{},
+// 		}, err
+// 	}
 
-	return &pb.FindProductResponse{
-		Product: &pb.Product{
-			Id:          product.ID,
-			Name:        product.Name,
-			Description: product.Description,
-			Price:       product.Price,
-		},
-	}, nil
-}
+// 	return &pb.FindProductResponse{
+// 		Product: &pb.Product{
+// 			Id:          product.ID,
+// 			Name:        product.Name,
+// 			Description: product.Description,
+// 			Price:       product.Price,
+// 		},
+// 	}, nil
+// }
 
 func NewProductGrpcService(usecase usecase.ProductUseCase) *ProductGrpcService {
 	return &ProductGrpcService{

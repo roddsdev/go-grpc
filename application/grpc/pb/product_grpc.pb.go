@@ -19,9 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ProductService_CreateProduct_FullMethodName = "/example.grpc.ProductService/CreateProduct"
-	ProductService_FindProducts_FullMethodName  = "/example.grpc.ProductService/FindProducts"
-	ProductService_FindProduct_FullMethodName   = "/example.grpc.ProductService/FindProduct"
+	ProductService_CreateProduct_FullMethodName = "/github.com.codeedu.codepix.ProductService/CreateProduct"
+	ProductService_FindProducts_FullMethodName  = "/github.com.codeedu.codepix.ProductService/FindProducts"
 )
 
 // ProductServiceClient is the client API for ProductService service.
@@ -30,7 +29,6 @@ const (
 type ProductServiceClient interface {
 	CreateProduct(ctx context.Context, in *CreateProductRequest, opts ...grpc.CallOption) (*CreateProductResponse, error)
 	FindProducts(ctx context.Context, in *FindProductsRequest, opts ...grpc.CallOption) (*FindProductsResponse, error)
-	FindProduct(ctx context.Context, in *FindProductRequest, opts ...grpc.CallOption) (*FindProductResponse, error)
 }
 
 type productServiceClient struct {
@@ -59,22 +57,12 @@ func (c *productServiceClient) FindProducts(ctx context.Context, in *FindProduct
 	return out, nil
 }
 
-func (c *productServiceClient) FindProduct(ctx context.Context, in *FindProductRequest, opts ...grpc.CallOption) (*FindProductResponse, error) {
-	out := new(FindProductResponse)
-	err := c.cc.Invoke(ctx, ProductService_FindProduct_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ProductServiceServer is the server API for ProductService service.
 // All implementations must embed UnimplementedProductServiceServer
 // for forward compatibility
 type ProductServiceServer interface {
 	CreateProduct(context.Context, *CreateProductRequest) (*CreateProductResponse, error)
 	FindProducts(context.Context, *FindProductsRequest) (*FindProductsResponse, error)
-	FindProduct(context.Context, *FindProductRequest) (*FindProductResponse, error)
 	mustEmbedUnimplementedProductServiceServer()
 }
 
@@ -87,9 +75,6 @@ func (UnimplementedProductServiceServer) CreateProduct(context.Context, *CreateP
 }
 func (UnimplementedProductServiceServer) FindProducts(context.Context, *FindProductsRequest) (*FindProductsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindProducts not implemented")
-}
-func (UnimplementedProductServiceServer) FindProduct(context.Context, *FindProductRequest) (*FindProductResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindProduct not implemented")
 }
 func (UnimplementedProductServiceServer) mustEmbedUnimplementedProductServiceServer() {}
 
@@ -140,29 +125,11 @@ func _ProductService_FindProducts_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProductService_FindProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindProductRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProductServiceServer).FindProduct(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProductService_FindProduct_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductServiceServer).FindProduct(ctx, req.(*FindProductRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ProductService_ServiceDesc is the grpc.ServiceDesc for ProductService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ProductService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "example.grpc.ProductService",
+	ServiceName: "github.com.codeedu.codepix.ProductService",
 	HandlerType: (*ProductServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -172,10 +139,6 @@ var ProductService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindProducts",
 			Handler:    _ProductService_FindProducts_Handler,
-		},
-		{
-			MethodName: "FindProduct",
-			Handler:    _ProductService_FindProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

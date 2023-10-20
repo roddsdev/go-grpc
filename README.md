@@ -16,7 +16,6 @@ Ap√≥s ter subir o docker (ver abaixo) e subir o servidor GRPC (ver abaixo), voc√
 
 Existem 3 $endpoints:
 - CreateProduct
-- FindProduct (passando uuid)
 - FindProducts (lista todos os productos cadastrados na base)
 
 ## Como subir o docker

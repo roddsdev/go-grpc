@@ -1,13 +1,12 @@
 syntax = "proto3";
 
-package example.grpc;
+package github.com.codeedu.codepix;
 
 option go_package = "protofiles/pb";
 
 service ProductService {
     rpc CreateProduct (CreateProductRequest) returns (CreateProductResponse) {};
     rpc FindProducts(FindProductsRequest) returns (FindProductsResponse) {};
-    rpc FindProduct(FindProductRequest) returns (FindProductResponse) {};
 }
 
 
@@ -18,7 +17,7 @@ message CreateProductRequest {
 }
 
 message Product {
-    string id = 1;
+    int32 id = 1;
     string name = 2;
     string description = 3;
     float price = 4;
@@ -28,18 +27,10 @@ message CreateProductResponse {
     Product product = 1;
 }
 
-message FindProductRequest{
-    string id = 1;
-}
-
 message FindProductsRequest{
-    
+
 }
 
 message FindProductsResponse{
    repeated Product products = 1;
-}
-
-message FindProductResponse{
-   Product product = 1;
 }

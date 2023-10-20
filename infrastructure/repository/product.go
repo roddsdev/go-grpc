@@ -20,11 +20,11 @@ func (r ProductRepositoryDb) AddProduct(product *model.Product) (*model.Product,
 	return product, nil
 }
 
-func (r ProductRepositoryDb) FindProduct(id string) (*model.Product, error) {
+func (r ProductRepositoryDb) FindProduct(id int32) (*model.Product, error) {
 	var product model.Product
 	r.Db.First(&product, "id = ?", id)
 
-	if product.ID == "" {
+	if product.ID == 0 {
 		return nil, fmt.Errorf("no product found")
 	}
 	return &product, nil
